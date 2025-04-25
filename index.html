@@ -56,7 +56,7 @@
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      background-color: #1f1f1f;
+      background-color: #171717;
     }
     .logo {
       width: 100px;
@@ -113,11 +113,45 @@
     footer a:hover {
       color: white;
     }
+    .cookie-container {
+      position: absolute;
+      z-index: 0;
+    }
+    #cookie-game {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    .tooltip-text {
+      position: absolute;
+      left: 45px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #222;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .cookie-container:hover .tooltip-text {
+      opacity: 1;
+    }
+
   </style>
 </head>
+
+<div class="cookie-container">
+  <img id="cookie-game" src="https://cdn-icons-png.flaticon.com/512/1047/1047711.png" alt="Cookie" />
+  <span class="tooltip-text">Clique para comer</span>
+</div>
+
 <body>
   <div class="main-header">
-    <h1>ZYC #600</h1>
+    <h1>Zeyom Community</h1>
     <nav class="nav-links">
       <a href="https://www.zycm.shop/">Início</a>
       <a href="https://discord.gg/yW7fPwhzMx">Scripts</a>
@@ -141,14 +175,14 @@
         allowfullscreen>
       </iframe>
 
-      <h2 style="text-align: center;">Páginas Oficiais</h2>
+      <h2 style="text-align: center;">Links Oficiais</h2>
 
       <div class="btns" style="justify-content: center;">
         <a href="https://youtube.com/@yzeyom" class="btn" target="_blank">
-          <i class="ri-youtube-fill"></i> Conferir Canal
+          <i class="ri-youtube-fill"></i> Canal YouTube
         </a>
         <a href="https://discord.gg/yW7fPwhzMx" class="btn" target="_blank">
-          <i class="ri-discord-fill"></i> Entrar no Discord
+          <i class="ri-discord-fill"></i> Discord ZYC
         </a>
       </div>
     </div>
@@ -166,11 +200,34 @@
           <i class="ri-discord-fill"></i> Baline
         </a>
       </div>
+      <section class="description">
+        <p>Sou desenvolvedor de jogos no Roblox e aqui você vai encontrar conteúdo 100% focado em desenvolvimento, com sistemas gratuitos que eu disponibilizo para todos os inscritos! Se você está começando agora ou já tem experiência no Roblox Studio, esse canal é pra você.</p>
+      </section>
     </div>
   </header>
 
-  <footer>''
+  <footer>
     <h>Zeyom Community - 2025</h>
   </footer>
 </body>
 </html>
+
+<script>
+  const cookieContainer = document.querySelector('.cookie-container');
+  const cookie = document.getElementById('cookie-game');
+
+  function moveCookie() {
+    const padding = 40;
+    const maxX = window.innerWidth - padding;
+    const maxY = document.body.scrollHeight - padding;
+
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    cookieContainer.style.left = `${newX}px`;
+    cookieContainer.style.top = `${newY}px`;
+  }
+
+  cookie.addEventListener('click', moveCookie);
+  window.addEventListener('load', moveCookie);
+</script>
